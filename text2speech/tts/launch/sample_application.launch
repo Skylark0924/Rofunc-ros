@@ -1,0 +1,13 @@
+<!-- This launch file runs the tts nodes. -->
+
+<launch>  
+    <!-- Custom Nodes would be launched here -->  
+
+    <arg name="config_file" default="$(find tts)/config/sample_configuration.yaml" />
+
+    <include file="$(find tts)/launch/tts_polly.launch" >
+        <!-- The configuration can either be passed in using the "config_file" parameter or
+                by using a rosparam tag to load the config into the parameter server -->
+        <arg name="config_file" value="$(arg config_file)"/>
+    </include>
+</launch>

@@ -1,0 +1,22 @@
+string polly_action
+string text
+string text_type
+string language_code
+string voice_id
+string output_format
+string output_path
+string sample_rate
+string lexicon_content
+string lexicon_name
+string[] lexicon_names
+string[] speech_mark_types
+uint32 max_results
+string next_token
+string sns_topic_arn
+string task_id
+string task_status
+string output_s3_bucket_name
+string output_s3_key_prefix
+bool include_additional_language_codes
+---
+string result

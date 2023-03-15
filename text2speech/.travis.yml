@@ -1,0 +1,24 @@
+sudo: required
+language: generic
+compiler:
+  - gcc
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+    recipients:
+      - ros-contributions@amazon.com
+      - travis-build@platform-notifications.robomaker.aws.a2z.com
+env:
+  global:
+    - GITHUB_ACCOUNT=aws-robotics
+    # uncomment PACKAGE_NAMES to build unit tests - REQUIRED if you'd like to run unit tests using colcon
+    - PACKAGE_NAMES=tts
+    - PACKAGE_LANG=python
+  matrix:
+    - ROS_DISTRO=kinetic ROS_VERSION=1
+    - ROS_DISTRO=melodic ROS_VERSION=1
+install:
+  - git clone https://github.com/aws-robotics/travis-scripts.git .ros_ci
+script:
+  - .ros_ci/ce_build.sh
