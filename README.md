@@ -1,7 +1,7 @@
 
 ![](img/logo14.png)
 
-# Rofunc-ros: A Ros Package for Human-centered Interactive Intelligent Humanoid Robots
+# Rofunc-ros: A Ros Package for Human-centered Intelligent Interactive Humanoid Robots
 
 ## Functions
 
