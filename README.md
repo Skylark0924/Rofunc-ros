@@ -3,7 +3,9 @@
 
 # Rofunc-ros: A Ros Package for Human-centered Interactive Intelligent Humanoid Robots
 
-## Chat
+## Functions
+
+### Chat
 
 ```
 roslaunch wpr_chatgpt start.launch
@@ -13,7 +15,7 @@ roslaunch wpr_chatgpt start.launch
 rosrun wpr_chatgpt str_pub.py "Hello"
 ```
 
-## Speech2text
+### Speech2text
 
 English
 ```
@@ -24,7 +26,7 @@ Chinese
 roslaunch ros_vosk ros_vosk_cn.launch
 ```
 
-## Text2speech
+### Text2speech
 
 
 ```
