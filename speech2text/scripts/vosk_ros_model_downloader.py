@@ -250,7 +250,7 @@ class model_downloader():
         self.model_info_message.config(text=info)
 
     def get_model_link(self, model_to_download):
-        soup = BeautifulSoup(self.r.data, "lxml")
+        soup = BeautifulSoup(self.r.data, "html.parser")
 
         for link in soup.findAll('a'):
             model_link = link.get('href')

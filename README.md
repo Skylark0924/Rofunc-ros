@@ -13,8 +13,13 @@ rosrun wpr_chatgpt str_pub.py "Hello"
 
 ## Speech2text
 
+English
 ```
-roslaunch ros_vosk ros_vosk.launch
+roslaunch ros_vosk ros_vosk_en.launch
+```
+Chinese
+```
+roslaunch ros_vosk ros_vosk_cn.launch
 ```
 
 ## Text2speech
