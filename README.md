@@ -54,33 +54,34 @@ roslaunch rofunc_ros voice_qa_cn.launch
 English
 
 ```
-roslaunch ros_vosk ros_vosk_en.launch
+roslaunch rofunc_ros speech2text_en.launch
 ```
+
 Chinese
 
 ```
-roslaunch ros_vosk ros_vosk_cn.launch
+roslaunch rofunc_ros speech2text_cn.launch
 ```
 
 #### Chat
 
 ```
-roslaunch wpr_chatgpt start.launch
+roslaunch rofunc_ros start.launch
 ```
 
 ```
-rosrun wpr_chatgpt str_pub.py "Hello"
+rosrun rofunc_ros str_pub.py "Hello"
 ```
 
 #### Text2speech
 
 
 ```
-roslaunch tts sample_application.launch
+roslaunch rofunc_ros text2speech.launch
 ```
 
 ```
-rosrun tts voicer.py 'Hello everyone! I am CURI, a humanoid robot designed by \
+rosrun rofunc_ros voicer.py 'Hello everyone! I am CURI, a humanoid robot designed by \
       collaborative and versatile robots laboratory. Our lab focuses on the co-evolutionary\
       development of human-centered robotics and AI technologies for advanced robots, such as \
       human-like mobile manipulators, humanoid robots, to perform autonomous, assistive and \
