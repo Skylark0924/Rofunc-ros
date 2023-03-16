@@ -29,12 +29,11 @@ class tts_engine():
             rospy.logdebug("Finished Speaking..")
     
     def say(self, phrase):
-
         rospy.loginfo("The robot says: " + phrase)
         self.engine = pyttsx3.init()
         self.engine.connect('started-utterance', self.tts_onStart)
         self.engine.connect('finished-utterance', self.tts_onEnd)
-        self.engine.say(phrase,"tts_engine")
+        self.engine.say(phrase, "tts_engine")
         self.engine.runAndWait()
 
     def tts_onStart(self, name):
