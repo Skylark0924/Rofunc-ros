@@ -2,7 +2,7 @@ openai:
   conversation: False
   model: gpt-3.5-turbo
 
-  # 可使用的模型：
+  # Available model：
   # davinci-instruct-beta-v3
   # text-davinci-003
   # text-davinci-002

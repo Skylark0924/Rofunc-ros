@@ -6,7 +6,7 @@ from std_msgs.msg import String
 from urllib import response
 import openai
    
-# 接收问题字符串回调函数
+# Receive question string callback function
 def cbQuestion(msg):
     rospy.loginfo("--------------------")
     rospy.loginfo(msg.data)
@@ -49,21 +49,17 @@ def cbQuestion(msg):
             response = None
     rospy.logwarn(response)
 
-# 主函数
 if __name__ == "__main__":
     rospy.init_node("gpt3_node")
 
-    #读取 API Key 参数
     api_key =  rospy.get_param('~openai/api_key')
     model_engine =  rospy.get_param('~openai/model' , "davinci-instruct-beta-v3")
 
-    rospy.logwarn("ChatGPT: 当前使用模型 %s",model_engine)
+    rospy.logwarn("ChatGPT: current used model %s",model_engine)
 
-    # 订阅外部输入的问话
     question_sub = rospy.Subscriber("/wpr_ask", String, cbQuestion, queue_size=1)
 
-    # 发布ChatGPT返回的结果
     response_pub = rospy.Publisher("/chatspt_answer", String, queue_size=1)
 
-    rospy.logwarn("ChatGPT: 我已经准备好了！向我提问吧 ^_^")
+    rospy.logwarn("ChatGPT: I'm ready! Please ask your questions ^_^")
     rospy.spin()
