@@ -1,10 +1,10 @@
 <launch>
     <!-- Speech2text -->
-    <include file="$(find rofunc_ros)/speech2text/launch/ros_vosk_en.launch" ></include>
+    <include file="$(find rofunc_ros)/speech2text/launch/speech2text_en.launch" ></include>
 
     <!-- ChatGPT -->
     <include file="$(find rofunc_ros)/chat/launch/start.launch" ></include>
 
     <!-- Text2speech -->  
-    <include file="$(find rofunc_ros)/text2speech/launch/sample_application.launch" ></include>
+    <include file="$(find rofunc_ros)/text2speech/launch/text2speech.launch" ></include>
 </launch>

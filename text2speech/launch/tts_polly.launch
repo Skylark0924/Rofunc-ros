@@ -15,13 +15,13 @@
     <!-- If a config file argument is provided by the caller then we will load it into the polly_node_name node's namespace -->
     <arg name="config_file" default="" />
 
-    <node name="$(arg polly_node_name)" pkg="tts" type="polly_node.py">
+    <node name="$(arg polly_node_name)" pkg="rofunc_ros" type="polly_node.py">
         <rosparam if="$(eval config_file!='')" command="load" file="$(arg config_file)"/>
     </node>
 
-    <node name="$(arg synthesizer_node_name)" pkg="tts" type="synthesizer_node.py"/>
+    <node name="$(arg synthesizer_node_name)" pkg="rofunc_ros" type="synthesizer_node.py"/>
 
-    <node name="$(arg tts_node_name)" pkg="tts" type="tts_node.py"/>
+    <node name="$(arg tts_node_name)" pkg="rofunc_ros" type="tts_node.py"/>
 
     <include file="$(find sound_play)/soundplay_node.launch" >
         <arg name="device" value="$(arg audio_output_device)"/>

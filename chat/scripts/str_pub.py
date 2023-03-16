@@ -14,7 +14,7 @@ if __name__ == "__main__":
         question_msg.data = sys.argv[1]
 
         # Publish questions to ChatGPT
-        ask_pub = rospy.Publisher("/wpr_ask", String, queue_size=1)
+        ask_pub = rospy.Publisher("/chatgpt_ask", String, queue_size=1)
         rospy.sleep(0.1)
         ask_pub.publish(question_msg)
     else:

@@ -19,7 +19,7 @@ import json
 import rospy
 import hashlib
 from optparse import OptionParser
-from tts.srv import Synthesizer, SynthesizerResponse
+from rofunc_ros.srv import Synthesizer, SynthesizerResponse
 
 
 class SpeechSynthesizer:
@@ -68,7 +68,7 @@ class SpeechSynthesizer:
 
         def __call__(self, **kwargs):
             rospy.loginfo('will call service {}'.format(self.service_name))
-            from tts.srv import Polly
+            from rofunc_ros.srv import Polly
             rospy.wait_for_service(self.service_name)
             polly = rospy.ServiceProxy(self.service_name, Polly)
             return polly(polly_action='SynthesizeSpeech', **kwargs)

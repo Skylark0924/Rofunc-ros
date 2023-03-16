@@ -22,10 +22,10 @@ import unittest
 import rospy
 import rostest
 
-from tts.srv import Polly
-from tts.srv import PollyResponse
-from tts.srv import Synthesizer
-from tts.srv import SynthesizerResponse
+from rofunc_ros.srv import Polly
+from rofunc_ros.srv import PollyResponse
+from rofunc_ros.srv import Synthesizer
+from rofunc_ros.srv import SynthesizerResponse
 
 # import tts which is a relay package, otherwise things don't work
 #

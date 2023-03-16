@@ -32,14 +32,16 @@ catkin_python_setup()
 ## Declare ROS messages, services and actions ##
 ################################################
 
-##Generate messages in the 'msg' folder
+## Generate messages in the 'msg' folder
 add_message_files(
+  DIRECTORY speech2text/msg
   FILES
   speech_recognition.msg
 )
 
 ## Generate services in the 'srv' folder
 add_service_files(
+  DIRECTORY text2speech/srv
   FILES 
   Synthesizer.srv 
   Polly.srv
@@ -47,6 +49,7 @@ add_service_files(
 
 ## Generate actions in the 'action' folder
 add_action_files(
+  DIRECTORY text2speech/action
   FILES
   Speech.action
 )
@@ -88,12 +91,8 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  LIBRARIES tts
+  LIBRARIES rofunc_ros
   CATKIN_DEPENDS actionlib_msgs message_runtime rospy std_msgs
-#  INCLUDE_DIRS include
-#  LIBRARIES wpr_chatgpt
-#  CATKIN_DEPENDS roscpp rospy std_msgs
-#  DEPENDS system_lib
 )
 
 ###########
@@ -107,20 +106,11 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/wpr_chatgpt.cpp
-# )
-
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
 # add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
-## Declare a C++ executable
-## With catkin_make all packages are built within a single CMake context
-## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/wpr_chatgpt_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -147,10 +137,10 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 install(PROGRAMS
-  scripts/polly_node.py
-  scripts/synthesizer_node.py
-  scripts/tts_node.py
-  scripts/voicer.py
+  text2speech/scripts/polly_node.py
+  text2speech/scripts/synthesizer_node.py
+  text2speech/scripts/tts_node.py
+  text2speech/scripts/voicer.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
@@ -166,8 +156,8 @@ install(DIRECTORY
 
 if(CATKIN_ENABLE_TESTING)
   ## Add folders to be run by python nosetests
-  catkin_add_nosetests(test/test_unit_synthesizer.py)
-  catkin_add_nosetests(test/test_unit_polly.py)
+  catkin_add_nosetests(text2speech/test/test_unit_synthesizer.py)
+  catkin_add_nosetests(text2speech/test/test_unit_polly.py)
   
   if(BUILD_AWS_TESTING)
       find_package(rostest REQUIRED COMPONENTS tts)

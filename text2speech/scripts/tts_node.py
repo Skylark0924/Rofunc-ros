@@ -54,8 +54,8 @@ import json
 
 import actionlib
 import rospy
-from tts.msg import SpeechAction, SpeechResult
-from tts.srv import Synthesizer
+from rofunc_ros.msg import SpeechAction, SpeechResult
+from rofunc_ros.srv import Synthesizer
 
 from sound_play.libsoundplay import SoundClient
 

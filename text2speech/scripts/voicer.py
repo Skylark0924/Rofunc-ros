@@ -32,7 +32,7 @@ SSML::
 import sys
 import actionlib
 import rospy
-from tts.msg import SpeechAction, SpeechGoal
+from rofunc_ros.msg import SpeechAction, SpeechGoal
 
 
 if __name__ == '__main__':

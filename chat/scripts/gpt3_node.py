@@ -57,9 +57,9 @@ if __name__ == "__main__":
 
     rospy.logwarn("ChatGPT: current used model %s",model_engine)
 
-    question_sub = rospy.Subscriber("/wpr_ask", String, cbQuestion, queue_size=1)
+    question_sub = rospy.Subscriber("/chatgpt_ask", String, cbQuestion, queue_size=1)
 
-    response_pub = rospy.Publisher("/chatspt_answer", String, queue_size=1)
+    response_pub = rospy.Publisher("/chatgpt_answer", String, queue_size=1)
 
     rospy.logwarn("ChatGPT: I'm ready! Please ask your questions ^_^")
     rospy.spin()

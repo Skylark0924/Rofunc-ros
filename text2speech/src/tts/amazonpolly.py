@@ -27,7 +27,7 @@ from contextlib import closing
 from optparse import OptionParser
 
 import rospy
-from tts.srv import Polly, PollyRequest, PollyResponse
+from rofunc_ros.srv import Polly, PollyRequest, PollyResponse
 
 
 def get_ros_param(param, default=None):
@@ -111,7 +111,7 @@ class AmazonPolly:
 
     Call the service programmatically::
 
-        from tts.srv import Polly
+        from rofunc_ros.srv import Polly
         rospy.wait_for_service('polly')
         polly = rospy.ServiceProxy('polly', Polly)
         res = polly(**kw)

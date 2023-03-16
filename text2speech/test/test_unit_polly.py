@@ -103,7 +103,7 @@ class TestPolly(unittest.TestCase):
         }
         boto3_polly_obj_mock.synthesize_speech.assert_called_with(**expected_synthesize_speech_kwargs)
 
-        from tts.srv import PollyResponse
+        from rofunc_ros.srv import PollyResponse
         self.assertTrue(isinstance(res, PollyResponse))
 
         import json
@@ -155,7 +155,7 @@ class TestPolly(unittest.TestCase):
         }
         boto3_polly_obj_mock.synthesize_speech.assert_called_with(**expected_synthesize_speech_kwargs)
 
-        from tts.srv import PollyResponse
+        from rofunc_ros.srv import PollyResponse
         self.assertTrue(isinstance(res, PollyResponse))
 
         import json

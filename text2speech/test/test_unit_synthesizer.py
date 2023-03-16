@@ -65,7 +65,7 @@ class TestSynthesizer(unittest.TestCase):
         }
 
         from tts.synthesizer import SpeechSynthesizer
-        from tts.srv import SynthesizerRequest
+        from rofunc_ros.srv import SynthesizerRequest
         speech_synthesizer = SpeechSynthesizer(engine='POLLY_LIBRARY')
         request = SynthesizerRequest(text=test_text, metadata=test_metadata)
         response = speech_synthesizer._node_request_handler(request)
@@ -84,7 +84,7 @@ class TestSynthesizer(unittest.TestCase):
         test_metadata = '''I am no JSON'''
 
         from tts.synthesizer import SpeechSynthesizer
-        from tts.srv import SynthesizerRequest
+        from rofunc_ros.srv import SynthesizerRequest
         speech_synthesizer = SpeechSynthesizer(engine='POLLY_LIBRARY')
         request = SynthesizerRequest(text=test_text, metadata=test_metadata)
         response = speech_synthesizer._node_request_handler(request)

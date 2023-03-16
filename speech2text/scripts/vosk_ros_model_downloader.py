@@ -21,11 +21,11 @@ class model_downloader():
     def __init__(self):
         rospack = rospkg.RosPack()
         rospack.list()
-        self.package_path = rospack.get_path('ros_vosk')
-        model_path = '/models/'
+        self.package_path = rospack.get_path('rofunc_ros')
+        model_path = '/speech2text/models/'
         self.model_dir = self.package_path + model_path
 
-        model_folder = os.path.join(self.package_path, 'models')
+        model_folder = os.path.join(self.package_path, 'speech2text/models')
         if not os.path.isdir(model_folder):
             os.mkdir(model_folder)   
         
