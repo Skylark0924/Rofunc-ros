@@ -122,7 +122,7 @@ class vosk_sr():
                 while not rospy.is_shutdown():
                     self.tts_read_over_listenner()
                     self.tts_status_listenner()
-                    # rospy.loginfo('tts_status: ' + str(self.tts_status) + ', t2s_status: ' + str(self.t2s_status))
+                    rospy.loginfo('tts_status: ' + str(self.tts_status) + ', t2s_status: ' + str(self.t2s_status))
 
                     if self.tts_status == True or self.t2s_status == True:
                         # If the text to speech is operating, clear the queue
