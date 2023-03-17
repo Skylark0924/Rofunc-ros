@@ -16,6 +16,9 @@ def response2voice(msg):
 
     goal = SpeechGoal()
 
+    msg = str(msg.data).replace("/", " ")
+    msg = str(msg).replace("\\", " ")
+    msg = str(msg).replace("\\n", " ")
     goal.text = msg
     goal.metadata = ''
 
@@ -29,6 +32,7 @@ if __name__ == '__main__':
     client.wait_for_server()
 
     response_sub = rospy.Subscriber("/chatgpt_answer", String, response2voice, queue_size=10)
+    rospy.spin()
 
 
 

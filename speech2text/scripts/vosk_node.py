@@ -40,7 +40,7 @@ class vosk_sr():
         
         model_path = '/speech2text/models/'
         model_dir = package_path + model_path
-        model = "None" #change the name of the model to match the downloaded model's name
+        model = "/vosk-model-small-en-us-0.15" #change the name of the model to match the downloaded model's name
         
         if not os.path.exists(model_dir+model):
             print ("No model found! Please use the GUI to download a model...")

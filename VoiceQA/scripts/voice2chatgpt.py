@@ -9,7 +9,8 @@ def voice2question(msg):
     rospy.loginfo("--------------------")
     rospy.loginfo(msg.data)
 
-    ask_pub.publish(msg)
+    if 'siri' in msg.data:
+        ask_pub.publish(msg)
 
     
 if __name__ == "__main__":
