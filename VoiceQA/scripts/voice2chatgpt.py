@@ -7,9 +7,9 @@ import sys
 
 def voice2question(msg):
     rospy.loginfo("--------------------")
-    rospy.loginfo(msg.data)
 
-    if 'siri' in msg.data:
+    if 'hi' in msg.data or 'hey' in msg.data:
+        rospy.loginfo(msg.data)
         ask_pub.publish(msg)
 
     
