@@ -35,7 +35,7 @@ The package is only tested by the following configuration.
 
 ### Voice Q&A
 
-This function consists of `Speech2text`, `Chat` and `Text2speech`. This pipeline can be activated by calling
+For this function, we implemented a Voice Q&A robot based on `ChatGPT`. This function consists of `Speech2text`, `Chat` and `Text2speech`. This pipeline can be activated by calling
 
 English
 
