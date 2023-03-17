@@ -8,7 +8,7 @@ import openai
    
 # Receive question string callback function
 def cbQuestion(msg):
-    rospy.loginfo("--------------------")
+    rospy.loginfo("[Rofunc-ros: Chat] --------------------")
     rospy.loginfo(msg.data)
 
     global api_key

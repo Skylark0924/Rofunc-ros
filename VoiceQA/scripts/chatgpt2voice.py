@@ -9,7 +9,7 @@ from std_msgs.msg import String, Bool
 
 
 def response2voice(msg):
-    rospy.loginfo("--------------------")
+    rospy.loginfo("[Rofunc-ros: Chat2Voice] --------------------")
     rospy.loginfo(msg.data)
 
     global client

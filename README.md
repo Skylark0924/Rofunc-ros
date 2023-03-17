@@ -39,9 +39,14 @@ For this function, we implemented a Voice Q&A robot based on `ChatGPT`. This fun
 
 English
 
-```
-roslaunch rofunc_ros voice_qa_en.launch
-```
+
+  ```
+  roslaunch rofunc_ros speech2text_en.launch
+  ```
+
+  ```
+  rosrun rofunc_ros voice2chatgpt.py
+  ```
 
 Chinese
 

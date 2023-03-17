@@ -1,3 +1,4 @@
 
 speech2text/scripts/__pycache__/
 speech2text/models
+chat/config/api_key.yaml

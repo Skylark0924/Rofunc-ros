@@ -6,9 +6,8 @@ from std_msgs.msg import String
 import sys
 
 def voice2question(msg):
-    rospy.loginfo("--------------------")
-
     if 'hi' in msg.data or 'hey' in msg.data:
+        rospy.loginfo("[Rofunc-ros: Voice2Chat] --------------------")
         rospy.loginfo(msg.data)
         ask_pub.publish(msg)
 

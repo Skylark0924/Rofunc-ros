@@ -57,7 +57,7 @@ class vosk_sr():
         self.pub_final = rospy.Publisher('speech_recognition/final_result',String, queue_size=10)
         self.pub_partial = rospy.Publisher('speech_recognition/partial_result',String, queue_size=10)
 
-        self.rate = rospy.Rate(100)
+        self.rate = rospy.Rate(50)
 
         rospy.on_shutdown(self.cleanup)
 
@@ -122,8 +122,10 @@ class vosk_sr():
                 
             
                 while not rospy.is_shutdown():
-                    self.tts_status_listenner()
                     self.tts_read_over_listenner()
+                    self.tts_status_listenner()
+                    rospy.sleep(0.1)
+
 
                     if self.tts_status == True and self.t2s_status == False:
                         # If the text to speech is operating, clear the queue
@@ -143,7 +145,7 @@ class vosk_sr():
 
                             if lentext > 2:
                                 result_text = diction["text"]
-                                rospy.loginfo(result_text)
+                                # rospy.loginfo(result_text)
                                 isRecognized = True
                             else:
                                 isRecognized = False
