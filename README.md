@@ -47,27 +47,33 @@ roslaunch rofunc_ros voice_qa_cn.launch
 ```
 
 > Following these instructions, you can run these sub-functions separately
+> 
 > **Speech2text**
+> 
 > English
 > ```
 > roslaunch rofunc_ros speech2text_en.launch
 > ```
+> 
 > Chinese
 > ```
 > roslaunch rofunc_ros speech2text_cn.launch
 > ```
 >
 > **Chat**
+> 
 > Open a terminal to run the launch file
 > ```
 > roslaunch rofunc_ros start.launch
 > ```
+> 
 > Open another terminal to feed the question
 > ```
 > rosrun rofunc_ros str_pub.py "Hello"
 > ```
 >
 > **Text2speech**
+> 
 > Open a terminal to run the launch file
 > ```
 > roslaunch rofunc_ros text2speech.launch
