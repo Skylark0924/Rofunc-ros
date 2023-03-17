@@ -40,9 +40,10 @@ class vosk_sr():
         
         model_path = '/speech2text/models/'
         model_dir = package_path + model_path
-        model = "/vosk-model-small-en-us-0.15" #change the name of the model to match the downloaded model's name
+        # model = "/vosk-model-small-en-us-0.15" #change the name of the model to match the downloaded model's name
+        model_name = rospy.get_param('vosk/model',model)
         
-        if not os.path.exists(model_dir+model):
+        if not os.path.exists(model_dir + model_name):
             print ("No model found! Please use the GUI to download a model...")
             model_downloader = downloader.model_downloader()
             model_downloader.execute()
@@ -52,7 +53,6 @@ class vosk_sr():
         self.t2s_status = False
 
         # ROS node initialization
-        
         self.pub_vosk = rospy.Publisher('speech_recognition/vosk_result',speech_recognition, queue_size=1)
         self.pub_final = rospy.Publisher('speech_recognition/final_result',String, queue_size=1)
         self.pub_partial = rospy.Publisher('speech_recognition/partial_result',String, queue_size=1)
@@ -60,10 +60,6 @@ class vosk_sr():
         self.rate = rospy.Rate(50)
 
         rospy.on_shutdown(self.cleanup)
-
-        model_name = rospy.get_param('vosk/model',model)
-        if not rospy.has_param('vosk/model'):
-            rospy.set_param('vosk/model', model_name)
 
         self.msg = speech_recognition()
 
@@ -80,7 +76,7 @@ class vosk_sr():
         self.samplerate = int(device_info['default_samplerate'])
         rospy.set_param('vosk/sample_rate', self.samplerate)
 
-        self.model = vosk.Model(model_dir+model_name)
+        self.model = vosk.Model(model_dir + model_name)
 
         #TODO GPUInit automatically selects a CUDA device and allows multithreading.
         # gpu = vosk.GpuInit() #TODO
@@ -132,7 +128,6 @@ class vosk_sr():
 
                     elif self.tts_status == False:
                         if self.t2s_status == False:
-                            # rospy.loginfo('wrong!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
                             data = self.q.get()
                             if rec.AcceptWaveform(data):
 
