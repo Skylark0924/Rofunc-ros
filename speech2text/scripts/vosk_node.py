@@ -53,9 +53,9 @@ class vosk_sr():
 
         # ROS node initialization
         
-        self.pub_vosk = rospy.Publisher('speech_recognition/vosk_result',speech_recognition, queue_size=10)
-        self.pub_final = rospy.Publisher('speech_recognition/final_result',String, queue_size=10)
-        self.pub_partial = rospy.Publisher('speech_recognition/partial_result',String, queue_size=10)
+        self.pub_vosk = rospy.Publisher('speech_recognition/vosk_result',speech_recognition, queue_size=1)
+        self.pub_final = rospy.Publisher('speech_recognition/final_result',String, queue_size=1)
+        self.pub_partial = rospy.Publisher('speech_recognition/partial_result',String, queue_size=1)
 
         self.rate = rospy.Rate(50)
 
@@ -96,7 +96,7 @@ class vosk_sr():
         self.q.put(bytes(indata))
         
     def tts_get_status(self, msg):
-        self.tts_status = msg.data 
+        self.tts_status = msg.data
 
     def tts_status_listenner(self):
         rospy.Subscriber('/tts/status', Bool, self.tts_get_status)
@@ -112,9 +112,7 @@ class vosk_sr():
         try:
 
             with sd.RawInputStream(samplerate=self.samplerate, blocksize=16000, device=self.input_dev_num, dtype='int16',
-                               channels=1, callback=self.stream_callback):
-                rospy.logdebug('Started recording')
-                
+                               channels=1, callback=self.stream_callback):                
                 rec = vosk.KaldiRecognizer(self.model, self.samplerate)
                 print("Vosk is ready to listen!")
                 isRecognized = False
@@ -124,65 +122,66 @@ class vosk_sr():
                 while not rospy.is_shutdown():
                     self.tts_read_over_listenner()
                     self.tts_status_listenner()
-                    rospy.sleep(0.1)
+                    rospy.loginfo('tts_status: ' + str(self.tts_status) + ', t2s_status: ' + str(self.t2s_status))
 
-
-                    if self.tts_status == True and self.t2s_status == False:
+                    if self.tts_status == True or self.t2s_status == True:
                         # If the text to speech is operating, clear the queue
                         with self.q.mutex:
                             self.q.queue.clear()
                         rec.Reset()
 
-                    elif self.tts_status == False and self.t2s_status == False:
-                        data = self.q.get()
-                        if rec.AcceptWaveform(data):
+                    elif self.tts_status == False:
+                        if self.t2s_status == False:
+                            rospy.loginfo('wrong!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+                            data = self.q.get()
+                            if rec.AcceptWaveform(data):
 
-                            # In case of final result
-                            result = rec.FinalResult()
+                                # In case of final result
+                                result = rec.FinalResult()
 
-                            diction = json.loads(result)
-                            lentext = len(diction["text"])
+                                diction = json.loads(result)
+                                lentext = len(diction["text"])
 
-                            if lentext > 2:
-                                result_text = diction["text"]
-                                # rospy.loginfo(result_text)
-                                isRecognized = True
+                                if lentext > 2:
+                                    result_text = diction["text"]
+                                    # rospy.loginfo(result_text)
+                                    isRecognized = True
+                                else:
+                                    isRecognized = False
+                                # Resets current results so the recognition can continue from scratch
+                                rec.Reset()
                             else:
-                                isRecognized = False
-                            # Resets current results so the recognition can continue from scratch
-                            rec.Reset()
-                        else:
-                            # In case of partial result
-                            result_partial = rec.PartialResult()
-                            if (len(result_partial) > 20):
+                                # In case of partial result
+                                result_partial = rec.PartialResult()
+                                if (len(result_partial) > 20):
 
-                                isRecognized_partially = True
-                                partial_dict = json.loads(result_partial)
-                                partial = partial_dict["partial"]
+                                    isRecognized_partially = True
+                                    partial_dict = json.loads(result_partial)
+                                    partial = partial_dict["partial"]
 
-                        if (isRecognized is True):
+                            if (isRecognized is True):
 
-                            self.msg.isSpeech_recognized = True
-                            self.msg.time_recognized = rospy.Time.now()
-                            self.msg.final_result = result_text
-                            self.msg.partial_result = "unk"
-                            self.pub_vosk.publish(self.msg)
-                            rospy.sleep(0.1)
-                            self.pub_final.publish(result_text)
-                            isRecognized = False
-
-
-                        elif (isRecognized_partially is True):
-                            if partial != "unk":
-                                self.msg.isSpeech_recognized = False
+                                self.msg.isSpeech_recognized = True
                                 self.msg.time_recognized = rospy.Time.now()
-                                self.msg.final_result = "unk"
-                                self.msg.partial_result = partial
+                                self.msg.final_result = result_text
+                                self.msg.partial_result = "unk"
                                 self.pub_vosk.publish(self.msg)
                                 rospy.sleep(0.1)
-                                self.pub_partial.publish(partial)
-                                partial = "unk"
-                                isRecognized_partially = False
+                                self.pub_final.publish(result_text)
+                                isRecognized = False
+
+
+                            elif (isRecognized_partially is True):
+                                if partial != "unk":
+                                    self.msg.isSpeech_recognized = False
+                                    self.msg.time_recognized = rospy.Time.now()
+                                    self.msg.final_result = "unk"
+                                    self.msg.partial_result = partial
+                                    self.pub_vosk.publish(self.msg)
+                                    rospy.sleep(0.1)
+                                    self.pub_partial.publish(partial)
+                                    partial = "unk"
+                                    isRecognized_partially = False
                                 
 
 
