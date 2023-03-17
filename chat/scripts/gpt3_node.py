@@ -30,7 +30,7 @@ def cbQuestion(msg):
         model='gpt-3.5-turbo',
         messages=[
             {"role": "user", "content": prompt}],
-        max_tokens=1024,
+        max_tokens=200,
         n=1,
         stop=None,
         temperature=0.5,
