@@ -49,6 +49,7 @@ class vosk_sr():
             model = model_downloader.model_to_download
         
         self.tts_status = False
+        self.t2s_status = False
 
         # ROS node initialization
         
@@ -94,11 +95,18 @@ class vosk_sr():
             print(status, file=sys.stderr)
         self.q.put(bytes(indata))
         
-    def tts_get_status(self,msg):
-        self.tts_status = msg.data
+    def tts_get_status(self, msg):
+        self.tts_status = msg.data 
 
     def tts_status_listenner(self):
         rospy.Subscriber('/tts/status', Bool, self.tts_get_status)
+
+    def t2s_get_read_status(self, msg):
+        self.t2s_status = msg.data
+
+    def tts_read_over_listenner(self):
+        rospy.Subscriber('/sound_play/is_speaking', Bool, self.t2s_get_read_status)
+
 
     def speech_recognize(self):    
         try:
@@ -115,14 +123,15 @@ class vosk_sr():
             
                 while not rospy.is_shutdown():
                     self.tts_status_listenner()
+                    self.tts_read_over_listenner()
 
-                    if self.tts_status == True:
+                    if self.tts_status == True and self.t2s_status == False:
                         # If the text to speech is operating, clear the queue
                         with self.q.mutex:
                             self.q.queue.clear()
                         rec.Reset()
 
-                    elif self.tts_status == False:
+                    elif self.tts_status == False and self.t2s_status == False:
                         data = self.q.get()
                         if rec.AcceptWaveform(data):
 
