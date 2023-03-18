@@ -32,7 +32,11 @@ The package is only tested by the following configuration.
 
 ### Voice Q&A
 
-For this function, we implemented a Voice Q&A robot based on `ChatGPT`. This function consists of `Speech2text`, `Chat` and `Text2speech`. This whole pipeline can be activated by calling
+For this function, we implemented a Voice Q&A robot based on `ChatGPT`. This function consists of `Speech2text`, `Chat` and `Text2speech`. 
+
+![](img/voiceQA_pipeline.png)
+
+This whole pipeline can be activated by calling
 
 **English**
 
@@ -46,7 +50,7 @@ roslaunch rofunc_ros voice_qa_en.launch
 roslaunch rofunc_ros voice_qa_cn.launch
 ```
 
-> Following these instructions, you can run these sub-functions separately
+> Following these instructions, you can run these sub-functions separately.
 > 
 > **Speech2text**
 > 
