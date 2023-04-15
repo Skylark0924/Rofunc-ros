@@ -1,3 +1,0 @@
-vosk/model: vosk-model-small-cn-0.22
-vosk/sample_rate: 16000
-vosk/blocksize: 16000

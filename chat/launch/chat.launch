@@ -1,8 +1,0 @@
-<launch>
-
-    <node  pkg="rofunc_ros" type="chatgpt_node.py"  name="chatgpt_node" output="screen">
-        <rosparam file="$(find rofunc_ros)/chat/config/api_key.yaml" command="load" />
-        <rosparam file="$(find rofunc_ros)/chat/config/model.yaml" command="load" />
-    </node>
-
-</launch>

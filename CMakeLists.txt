@@ -34,14 +34,14 @@ catkin_python_setup()
 
 ## Generate messages in the 'msg' folder
 add_message_files(
-  DIRECTORY speech2text/msg
+  DIRECTORY VoiceQA/speech2text/msg
   FILES
   speech_recognition.msg
 )
 
 ## Generate services in the 'srv' folder
 add_service_files(
-  DIRECTORY text2speech/srv
+  DIRECTORY VoiceQA/text2speech/srv
   FILES 
   Synthesizer.srv 
   Polly.srv
@@ -49,7 +49,7 @@ add_service_files(
 
 ## Generate actions in the 'action' folder
 add_action_files(
-  DIRECTORY text2speech/action
+  DIRECTORY VoiceQA/text2speech/action
   FILES
   Speech.action
 )
@@ -137,10 +137,10 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 install(PROGRAMS
-  text2speech/scripts/polly_node.py
-  text2speech/scripts/synthesizer_node.py
-  text2speech/scripts/tts_node.py
-  text2speech/scripts/voicer.py
+  VoiceQA/text2speech/scripts/polly_node.py
+  VoiceQA/text2speech/scripts/synthesizer_node.py
+  VoiceQA/text2speech/scripts/tts_node.py
+  VoiceQA/text2speech/scripts/voicer.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
@@ -156,8 +156,8 @@ install(DIRECTORY
 
 if(CATKIN_ENABLE_TESTING)
   ## Add folders to be run by python nosetests
-  catkin_add_nosetests(text2speech/test/test_unit_synthesizer.py)
-  catkin_add_nosetests(text2speech/test/test_unit_polly.py)
+  catkin_add_nosetests(VoiceQA/text2speech/test/test_unit_synthesizer.py)
+  catkin_add_nosetests(VoiceQA/text2speech/test/test_unit_polly.py)
   
   if(BUILD_AWS_TESTING)
       find_package(rostest REQUIRED COMPONENTS tts)

@@ -1,0 +1,29 @@
+<!--
+    This launch file runs the tts nodes.
+-->
+
+<launch>
+    <!-- If a polly_node_name argument is provided by the caller then we will set the polly_node node's name to that value -->
+    <arg name="polly_node_name" default="polly_node" />
+    <!-- If a synthesizer_node_name argument is provided by the caller then we will set the synthesizer_node node's name to that value -->
+    <arg name="synthesizer_node_name" default="synthesizer_node" />
+    <!-- If a tts_node_name argument is provided by the caller then we will set the tts_node node's name to that value -->
+    <arg name="tts_node_name" default="tts_node" />
+
+    <arg name="audio_output_device" default="" />
+
+    <!-- If a config file argument is provided by the caller then we will load it into the polly_node_name node's namespace -->
+    <arg name="config_file" default="" />
+
+    <node name="$(arg polly_node_name)" pkg="rofunc_ros" type="polly_node.py">
+        <rosparam if="$(eval config_file!='')" command="load" file="$(arg config_file)"/>
+    </node>
+
+    <node name="$(arg synthesizer_node_name)" pkg="rofunc_ros" type="synthesizer_node.py"/>
+
+    <node name="$(arg tts_node_name)" pkg="rofunc_ros" type="tts_node.py"/>
+
+    <include file="$(find sound_play)/soundplay_node.launch" >
+        <arg name="device" value="$(arg audio_output_device)"/>
+    </include>
+</launch>

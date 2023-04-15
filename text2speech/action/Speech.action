@@ -1,9 +1,0 @@
-#goal definition
-string text
-string metadata
----
-#result definition
-string response
----
-#feedback
-string data

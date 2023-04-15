@@ -24,7 +24,7 @@ setup_args = generate_distutils_setup(
         'tts',
     ],
     package_dir={
-        '': 'text2speech/src',
+        '': 'VoiceQA/text2speech/src',
     },
     package_data={
         '': ['data/*.ogg', 'data/models/polly/2016-06-10/*.json']

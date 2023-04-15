@@ -1,7 +1,0 @@
-<!-- This launch file runs the tts nodes and a test script. -->
-
-<launch>
-  <node name="polly_node" pkg="tts" type="polly_node.py"/>
-  <node name="synthesizer_node" pkg="tts" type="synthesizer_node.py"/>
-  <test test-name="synthesis" pkg="tts" type="test_integration.py" />
-</launch>

@@ -1,7 +1,0 @@
-<launch>
-
-  <node name="vosk_engine" pkg="rofunc_ros" type="vosk_node.py" respawn="true" output="screen" />
-  <node name="tts_engine" pkg="rofunc_ros" type="tts_engine.py" respawn="true" output="screen" />
-  <rosparam file="$(find rofunc_ros)/speech2text/cfg/params_cn.yaml" command="load" ns="" />
-
-</launch>
