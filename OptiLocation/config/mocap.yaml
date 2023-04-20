@@ -1,0 +1,31 @@
+#
+# Definition of all trackable objects
+# Identifier corresponds to Trackable ID set in Tracking Tools
+#
+rigid_bodies:
+    '12':
+        pose: robot/pose
+        pose2d: robot/ground_pose
+        odom: robot/Odom
+        tf: tf
+        child_frame_id: robot/base_link
+        parent_frame_id: world
+    '13':
+        pose: cup/pose
+        pose2d: cup/ground_pose
+        odom: cup/Odom
+        tf: tf
+        child_frame_id: cup/base_link
+        parent_frame_id: world
+    # '2':
+    #     pose: Robot_2/pose
+    #     pose2d: Robot_2/ground_pose
+    #     odom: Robot_2/Odom
+    #     tf: tf
+    #     child_frame_id: Robot_2/base_link
+    #     parent_frame_id: world
+optitrack_config:
+        multicast_address: 239.255.42.99
+        command_port: 1510
+        data_port: 1511
+        enable_optitrack: true

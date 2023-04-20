@@ -15,6 +15,7 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
+  <build_depend>actionlib</build_depend>
   <build_depend>actionlib_msgs</build_depend>
   <build_depend>message_generation</build_depend>
   <build_depend>roscpp</build_depend>
@@ -24,6 +25,10 @@
   <build_depend>sound_play</build_depend>
   <build_depend>rosunit</build_depend>
   <build_depend>rostest</build_depend>
+  <build_depend>dynamic_reconfigure</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>tf</build_depend>
 
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
@@ -39,6 +44,12 @@
   <exec_depend>message_generation</exec_depend>
   <exec_depend>python-boto3</exec_depend>
   <exec_depend>sound_play</exec_depend>
+  <exec_depend>dynamic_reconfigure</exec_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>actionlib</exec_depend>
+  <exec_depend>roscppactionlib_msgs</exec_depend>
+
 
   <test_depend>rosunit</test_depend>
   <test_depend>rostest</test_depend>

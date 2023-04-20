@@ -2,7 +2,14 @@ cmake_minimum_required(VERSION 3.0.2)
 project(rofunc_ros)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+# Require c++11
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+if(COMPILER_SUPPORTS_CXX11)
+    set(CMAKE_CXX_FLAGS "-std=c++11")
+else()
+    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+endif()
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -12,11 +19,15 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   actionlib_msgs
+  geometry_msgs
+  nav_msgs
+  tf
+  dynamic_reconfigure
   message_generation
   rosunit
-  std_msgs
   sound_play
 )
+
 
 
 ## System dependencies are found with CMake's conventions
@@ -76,10 +87,9 @@ generate_messages(
 ##     and list every .cfg file to be processed
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
-# generate_dynamic_reconfigure_options(
-#   cfg/DynReconf1.cfg
-#   cfg/DynReconf2.cfg
-# )
+generate_dynamic_reconfigure_options(
+  OptiLocation/cfg/MocapOptitrack.cfg
+)
 
 ###################################
 ## catkin specific configuration ##
@@ -92,7 +102,9 @@ generate_messages(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   LIBRARIES rofunc_ros
-  CATKIN_DEPENDS actionlib_msgs message_runtime rospy std_msgs
+  INCLUDE_DIRS OptiLocation/include
+  CATKIN_DEPENDS roscppactionlib_msgs message_runtime rospy std_msgs
+  dynamic_reconfigure
 )
 
 ###########
@@ -101,10 +113,13 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-include_directories(
-# include
+include_directories(include
+  OptiLocation/include
   ${catkin_INCLUDE_DIRS}
 )
+
+add_subdirectory(OptiLocation/src)
+
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -144,11 +159,8 @@ install(PROGRAMS
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-install(DIRECTORY
-  config
-  launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
+install(DIRECTORY launch config
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
 #############
 ## Testing ##

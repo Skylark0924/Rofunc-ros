@@ -9,6 +9,7 @@
     - [Installation](#installation-1)
   - [Functions](#functions)
     - [Voice Q\&A](#voice-qa)
+    - [OptiLocation](#optilocation)
   - [Cite](#cite)
   - [The Team](#the-team)
   - [Related repository: Rofunc](#related-repository-rofunc)
@@ -50,6 +51,11 @@ roslaunch rofunc_ros voice_qa_en.launch
 roslaunch rofunc_ros voice_qa_cn.launch
 ```
 
+### OptiLocation
+
+```
+roslaunch rofunc_ros mocap.launch & rosrun rviz rviz
+```
 
 ## Cite
 
