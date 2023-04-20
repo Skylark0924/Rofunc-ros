@@ -38,16 +38,16 @@ class vosk_sr():
         rospack.list()
         package_path = rospack.get_path('rofunc_ros')
         
-        model_path = '/speech2text/models/'
+        model_path = '/VoiceQA/speech2text/models/'
         model_dir = package_path + model_path
         # model = "/vosk-model-small-en-us-0.15" #change the name of the model to match the downloaded model's name
-        model_name = rospy.get_param('vosk/model',model)
+        model_name = rospy.get_param('vosk/model')
         
         if not os.path.exists(model_dir + model_name):
             print ("No model found! Please use the GUI to download a model...")
             model_downloader = downloader.model_downloader()
             model_downloader.execute()
-            model = model_downloader.model_to_download
+            print ("Model downloaded!")
         
         self.tts_status = False
         self.t2s_status = False
@@ -118,7 +118,7 @@ class vosk_sr():
                 while not rospy.is_shutdown():
                     self.tts_read_over_listenner()
                     self.tts_status_listenner()
-                    rospy.loginfo('tts_status: ' + str(self.tts_status) + ', t2s_status: ' + str(self.t2s_status))
+                    # rospy.loginfo('tts_status: ' + str(self.tts_status) + ', t2s_status: ' + str(self.t2s_status))
 
                     if self.tts_status == True or self.t2s_status == True:
                         # If the text to speech is operating, clear the queue
@@ -139,7 +139,7 @@ class vosk_sr():
 
                                 if lentext > 2:
                                     result_text = diction["text"]
-                                    # rospy.loginfo(result_text)
+                                    rospy.loginfo(result_text)
                                     isRecognized = True
                                 else:
                                     isRecognized = False

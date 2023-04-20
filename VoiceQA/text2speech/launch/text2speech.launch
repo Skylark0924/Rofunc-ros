@@ -3,9 +3,9 @@
 <launch>  
     <!-- Custom Nodes would be launched here -->  
 
-    <arg name="config_file" default="$(find rofunc_ros)/text2speech/config/sample_configuration.yaml" />
+    <arg name="config_file" default="$(find rofunc_ros)/VoiceQA/text2speech/config/sample_configuration.yaml" />
 
-    <include file="$(find rofunc_ros)/text2speech/launch/tts_polly.launch" >
+    <include file="$(find rofunc_ros)/VoiceQA/text2speech/launch/tts_polly.launch" >
         <!-- The configuration can either be passed in using the "config_file" parameter or
                 by using a rosparam tag to load the config into the parameter server -->
         <arg name="config_file" value="$(arg config_file)"/>

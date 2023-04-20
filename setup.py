@@ -11,7 +11,6 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-import os
 from distutils.core import setup
 from catkin_pkg.python_setup import generate_distutils_setup
 
@@ -19,15 +18,13 @@ from catkin_pkg.python_setup import generate_distutils_setup
 # ROS PACKAGING
 # using distutils : https://docs.python.org/2/distutils
 # fetch values from package.xml
-setup_args = generate_distutils_setup(
-    packages=[
-        'tts',
-    ],
-    package_dir={
-        '': 'VoiceQA/text2speech/src',
-    },
-    package_data={
-        '': ['data/*.ogg', 'data/models/polly/2016-06-10/*.json']
-    },
-)
+setup_args = generate_distutils_setup()
+setup_args['packages'] = [
+    'rofunc_ros'
+    ]
+setup_args['package_dir'] = {'': 'src'}
+setup_args['package_data'] = {
+    '': ['data/*.ogg', 'data/models/polly/2016-06-10/*.json']
+    }
+
 setup(**setup_args)

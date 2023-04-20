@@ -15,5 +15,5 @@
 
 
 if __name__ == "__main__":
-    import tts.synthesizer
-    tts.synthesizer.main()
+    from rofunc_ros.text2speech import synthesizer
+    synthesizer.main()

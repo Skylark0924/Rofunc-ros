@@ -15,5 +15,5 @@
 
 
 if __name__ == '__main__':
-    import tts.amazonpolly
-    tts.amazonpolly.main()
+    from rofunc_ros.text2speech import amazonpolly
+    amazonpolly.main()

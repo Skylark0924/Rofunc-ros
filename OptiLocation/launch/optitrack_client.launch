@@ -2,7 +2,7 @@
   <arg name="ip" default="192.168.13.118"/>
   <arg name="port" default="6688"/>
 
-  <node pkg="roport" type="roport_optitrack_client.py" name="roport_optitrack_client" output="screen">
+  <node pkg="rofunc_ros" type="optitrack_client.py" name="optitrack_client" output="screen">
     <param name="ip" value="$(arg ip)"/>
     <param name="port" value="$(arg port)"/>
 

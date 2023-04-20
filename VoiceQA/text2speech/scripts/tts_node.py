@@ -13,42 +13,6 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-"""A very simple Action Server that does TTS.
-
-It is a combination of a synthesizer and a player. Being an action server, it can be used in two different manners.
-
-1. Play and wait for it to finish
----------------------------------
-
-A user can choose to be blocked until the audio playing is done. This is especially useful in interactive scenarios.
-
-Example::
-
-    rospy.init_node('tts_action_client')
-    client = actionlib.SimpleActionClient('tts', SpeechAction)
-    client.wait_for_server()
-    goal = SpeechGoal()
-    goal.text = 'Let me ask you a question, please give me your answer.'
-    client.send_goal(goal)
-    client.wait_for_result()
-
-    # start listening to a response or waiting for some input to continue the interaction
-
-2. Play and forget
-------------------
-
-A user can also choose not to wait::
-
-    rospy.init_node('tts_action_client')
-    client = actionlib.SimpleActionClient('tts', SpeechAction)
-    client.wait_for_server()
-    goal = SpeechGoal()
-    goal.text = 'Let me talk, you can to something else in the meanwhile.'
-    client.send_goal(goal)
-
-This is useful when the robot wants to do stuff while the audio is being played. For example, a robot may start to
-read some instructions and immediately get ready for any input.
-"""
 
 import json
 

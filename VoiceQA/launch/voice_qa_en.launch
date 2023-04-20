@@ -1,13 +1,13 @@
 <launch>
     <!-- Speech2text -->
-    <include file="$(find rofunc_ros)/speech2text/launch/speech2text_en.launch" ></include>
+    <include file="$(find rofunc_ros)/VoiceQA/speech2text/launch/speech2text_en.launch" ></include>
     <node name="voice2chatgpt" pkg="rofunc_ros" type="voice2chatgpt.py" respawn="true" output="screen" />
 
 
     <!-- ChatGPT -->
-    <include file="$(find rofunc_ros)/chat/launch/start.launch" ></include>
+    <include file="$(find rofunc_ros)/VoiceQA/chat/launch/start.launch" ></include>
 
     <!-- Text2speech -->  
     <node name="chatgpt2voice" pkg="rofunc_ros" type="chatgpt2voice.py" respawn="true" output="screen" />
-    <include file="$(find rofunc_ros)/text2speech/launch/text2speech.launch" ></include>
+    <include file="$(find rofunc_ros)/VoiceQA/text2speech/launch/text2speech.launch" ></include>
 </launch>

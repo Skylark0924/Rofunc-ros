@@ -13,22 +13,6 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-"""Usage:
-
-(assuming TTS action server has been started via `roslaunch tts tts_polly.launch`)
-
-Plain text::
-
-    $ rosrun tts voicer.py 'Hello World'
-
-SSML::
-
-    $ rosrun tts voicer.py \
-        '<speak>Mary has a <amazon:effect name="whispered">little lamb.</amazon:effect></speak>' \
-        '{"text_type":"ssml"}'
-"""
-
-
 import sys
 import actionlib
 import rospy
