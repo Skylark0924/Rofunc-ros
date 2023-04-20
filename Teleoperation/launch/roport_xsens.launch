@@ -1,0 +1,23 @@
+<launch>
+    <param name="/use_sim_time" value="false" />
+
+    <arg name="ip" default=""/>
+    <arg name="port" default="9763"/>
+    <!-- All frames will be transformed regarding to the reference frame,
+         could be 'Pelvis', 'T8', or 'world' -->
+    <arg name="ref_frame" default="T8"/>
+    <!--  Scale the position of the pose if src_frame_id is not None.
+          Its value equals to the robot/human body dimension ratio  -->
+    <arg name="scaling" default="1"/>
+    <!-- The publish rate is for publish the converted messages, it should not be larger than source rate -->
+    <arg name="rate" default="60"/>
+
+    <node pkg="roport" type="roport_xsens_server.py" name="roport_xsens_server" output="screen">
+        <param name="ip" value="$(arg ip)"/>
+        <param name="port" value="$(arg port)"/>
+        <param name="ref_frame" value="$(arg ref_frame)"/>
+        <param name="scaling" value="$(arg scaling)"/>
+        <param name="rate" value="$(arg rate)"/>
+    </node>
+
+</launch>

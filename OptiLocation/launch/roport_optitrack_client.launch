@@ -1,0 +1,25 @@
+<launch>
+  <arg name="ip" default="192.168.13.118"/>
+  <arg name="port" default="6688"/>
+
+  <node pkg="roport" type="roport_optitrack_client.py" name="roport_optitrack_client" output="screen">
+    <param name="ip" value="$(arg ip)"/>
+    <param name="port" value="$(arg port)"/>
+
+    <!-- odom_topic and pose_topic both receive a str or a list of str -->
+    <rosparam param="odom_topic">
+      "/odom"
+    </rosparam>
+
+    <!--    <rosparam param="pose_topic">-->
+    <!--      ["/pose_1", "/pose_2"]-->
+    <!--    </rosparam>-->
+
+    <!-- The transform T_12 will be applied to the raw rigid body pose P_w2 obtained from OptiTrack to get T_w1 -->
+    <!-- T_w1 = P_w2 * T_12.inv  T_12 denotes the transform from frame 1 to frame 2 -->
+    <rosparam param="transform">
+      [0., 0., 0., 0., 0., 0., 1.]
+    </rosparam>
+  </node>
+
+</launch>
